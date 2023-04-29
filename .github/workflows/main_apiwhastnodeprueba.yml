@@ -52,4 +52,7 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_86713224CF384BD8A3233A0039C349D5 }}
           package: .
-
+          # Permission fix for deployment
+          azps: |
+            echo "Setting proper permissions for deployment"
+            chmod -R 777 "${{ github.workspace }}/dist"
