@@ -22,10 +22,10 @@ jobs:
           node-version: '18.x'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Install dev dependencies
-        run: npm ci --only=dev
+        run: npm install --only=dev
 
       - name: npm run build
         run: npm run build
