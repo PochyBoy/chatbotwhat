@@ -5,9 +5,9 @@ import config from "../config"
 export const verifyToken = (req,res) =>{
     try {
         let accessToken = config.whatsapp
-        const token = req.query['hub.verify_token']
         const challenge = req.query['hub.challenge']
-        if (token === accessToken && challenge != null && token != null) {
+        if ( req.query['hub.mode'] == 'subscribe' &&
+        req.query['hub.verify_token'] == accessToken) {
             res.status(200).send(challenge)
         }else{
             res.sendStatus(403)
