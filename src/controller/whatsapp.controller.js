@@ -4,7 +4,7 @@ import config from "../config"
 
 export const verifyToken = (req,res) =>{
     try {
-        let accessToken = config.whatsapp
+        let accessToken = 'esteesuntokendewhatperonadaseguro'
         const challenge = req.query['hub.challenge']
         if ( req.query['hub.mode'] == 'subscribe' &&
         req.query['hub.verify_token'] == accessToken) {
