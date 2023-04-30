@@ -3,6 +3,6 @@ config()
 
 export default {
     puerto: process.env.PORT || 3000,
-    whatsapp: process.env.TOKENWHATSAPP,
+    whatsapp: process.env.TOKENWHATSAAP,
 
 }
