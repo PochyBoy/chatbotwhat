@@ -22,7 +22,7 @@ export const verifyToken = (req,res) =>{
 export const receiveMessage = (req,res) =>{
     try {
         let data = req.body
-        console.log(data.entry)
+        console.log(data.entry[0].changes)
         if (data.object == 'whatsapp_business_account') {
             data.entry.forEach(entry => {
                 let webhook_event = entry.messaging[0]
