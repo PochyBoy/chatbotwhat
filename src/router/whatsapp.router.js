@@ -5,6 +5,6 @@ import { receiveMessage, verifyToken } from "../controller/whatsapp.controller";
 const router = Router()
 
 router.get('/token', verifyToken)
-router.post('/recibir', receiveMessage)
+router.post('/token', receiveMessage)
 
 export default router
