@@ -31,7 +31,7 @@ export const receiveMessage = (req,res) =>{
             });
             res.status(200).send('EVENT_RECEIVED')
         }else{
-            res.sendStatus(404)
+            res.sendStatus(405)
         }
     } catch (error) {
         res.send('EVENT_RECEIVED')
