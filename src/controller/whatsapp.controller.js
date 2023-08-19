@@ -1,6 +1,6 @@
-import config from "../config"
-import fs from 'fs'
+import fs from 'fs';
 
+import config from '../config';
 
 const myConsole = new console.Console(fs.createWriteStream('./log.txt'))
 
@@ -19,7 +19,7 @@ export const verifyToken = (req,res) =>{
     }
 }
 
-export const receiveMessage = (req,res) =>{
+export const receiveMessage =async (req,res) =>{
     try {
         let data = req.body
         console.log(data.entry[0].changes)
@@ -29,6 +29,12 @@ export const receiveMessage = (req,res) =>{
                 console.log(webhook_event)
                 myConsole.log(webhook_event)
             });
+            let response = await client.messages.create({
+                messaging_product: 'whatsapp',
+                to: number,
+                text: { body: '¡Hola! Bienvenido a ITBCP' }
+              });
+            
             res.status(200).send('EVENT_RECEIVED')
         }else{
             res.sendStatus(405)
