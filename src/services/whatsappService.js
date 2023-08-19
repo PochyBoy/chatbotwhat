@@ -5,12 +5,12 @@ function SendMessageWhatsApp(data){
     
     const options = {
         host: "graph.facebook.com",
-        path: "/v13.0/{YOUR_ID}/messages",
+        path: `/v13.0/${process.env.TOKENVERI}/messages`,
         method: "POST",
         body: data,
         headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer {YOUR_TOKEN}"
+            Authorization: `Bearer ${process.env.TOKENVERI}`
         }
     };
     const req = https.request(options, res => {
