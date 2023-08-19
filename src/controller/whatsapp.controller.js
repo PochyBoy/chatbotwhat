@@ -2,7 +2,7 @@ import fs from 'fs';
 
 import config from '../config';
 
-const processMessage = require("../shared/processMessage");
+const processMessage = require("../shared/processMessage.js");
 
 const myConsole = new console.Console(fs.createWriteStream('./log.txt'))
 

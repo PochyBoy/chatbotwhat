@@ -1,4 +1,4 @@
-const whatsappModel = require("../shared/whatsappmodels");
+const whatsappModel = require("./whatsappmodels");
 const whatsappService = require("../services/whatsappService");
 
 function Process(textUser, number){
