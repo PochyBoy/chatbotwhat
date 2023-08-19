@@ -19,27 +19,53 @@ export const verifyToken = (req,res) =>{
     }
 }
 
-export const receiveMessage =async (req,res) =>{
+export const receiveMessage = (req,res) =>{
     try {
-        let data = req.body
-        console.log(data.entry[0].changes)
-        if (data.object == 'whatsapp_business_account') {
-            data.entry.forEach(entry => {
-                let webhook_event = entry.messaging[0]
-                console.log(webhook_event)
-                myConsole.log(webhook_event)
-            });
-            let response = await client.messages.create({
-                messaging_product: 'whatsapp',
-                to: number,
-                text: { body: '¡Hola! Bienvenido a ITBCP' }
-              });
+        var entry = (req.body["entry"])[0];
+        var changes = (entry["changes"])[0];
+        var value = changes["value"];
+        var messageObject = value["messages"];
+
+        if(typeof messageObject != "undefined"){
+            var messages = messageObject[0];
+            var number = messages["from"];
+
+            var text = GetTextUser(messages);
+            
+            if(text != ""){
+                processMessage.Process(text, number);
+            } 
+
+        }        
             
             res.status(200).send('EVENT_RECEIVED')
-        }else{
-            res.sendStatus(405)
-        }
+       
     } catch (error) {
         res.send('EVENT_RECEIVED')
     }
+}
+
+function GetTextUser(messages){
+    var text = "";
+    var typeMessge = messages["type"];
+    if(typeMessge == "text"){
+        text = (messages["text"])["body"];
+    }
+    else if(typeMessge == "interactive"){
+
+        var interactiveObject = messages["interactive"];
+        var typeInteractive = interactiveObject["type"];
+        
+        if(typeInteractive == "button_reply"){
+            text = (interactiveObject["button_reply"])["title"];
+        }
+        else if(typeInteractive == "list_reply"){
+            text = (interactiveObject["list_reply"])["title"];
+        }else{
+            myConsole.log("sin mensaje");
+        }
+    }else{
+        myConsole.log("sin mensaje");
+    }
+    return text;
 }
