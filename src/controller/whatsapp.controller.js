@@ -31,6 +31,7 @@ export const receiveMessage = (req,res) =>{
             var number = messages["from"];
 
             var text = GetTextUser(messages);
+            console.log(text,number)
             
             if(text != ""){
                 processMessage.Process(text, number);
