@@ -2,6 +2,8 @@ import fs from 'fs';
 
 import config from '../config';
 
+const processMessage = require("../shared/processMessage");
+
 const myConsole = new console.Console(fs.createWriteStream('./log.txt'))
 
 export const verifyToken = (req,res) =>{
